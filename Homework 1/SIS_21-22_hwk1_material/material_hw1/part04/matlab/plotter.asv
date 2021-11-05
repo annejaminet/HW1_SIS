@@ -1,0 +1,14 @@
+clc; close all; clear;
+
+filename="../python/earthquake_data.txt";
+logFile= fopen(filename,'r');
+
+%get data
+formatSpec='%f';
+sizeData = [1 Inf];
+Data=fscanf(logFile,formatSpec,sizeData);
+Data=Data';
+
+%% Q17 plot the data in bi(you can, for example, use the function plot())
+
+
