@@ -16,6 +16,3 @@ for(n=1:1:length(y))
     end
 end
 
-
-
-

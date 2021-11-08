@@ -18,7 +18,7 @@ for i=1:length(n)
 end 
 
  figure(1)
- scatter(n,s)
+ stem(n,s, '.')
  title('Signal s');
  xlabel('n');
  ylabel('s[n]')
@@ -34,7 +34,7 @@ for i=1:length(n)
 end 
 
  figure(2)
- scatter(n,h)
+ stem(n,h, '.')
  title('Signal h');
  xlabel('n');
  ylabel('h[n]')
@@ -46,5 +46,5 @@ second_signal = s;
 result = take_conv(first_signal,second_signal);
 x = -length(n)+1:length(n)-1;
 figure(3)
-stem(x, result)
+stem(x, result, '.')
 title('Discrete Convolution (h*s)')

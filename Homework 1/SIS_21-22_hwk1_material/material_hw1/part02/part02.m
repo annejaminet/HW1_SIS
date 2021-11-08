@@ -1,3 +1,5 @@
+
+
 %% part02: Fourier transform, signal reconstruction and filtering
 % Wanting Jin, wanting.jin@epfl.ch, Oct 2021
 clear all
@@ -16,7 +18,7 @@ t1=-limit/2:1/dataFrequency:limit/2;
 figure(1)
 subplot(2,1,1);
 % Plot in time domain
-plot(t, acc)
+scatter(t, acc, 5, '.')
 xlabel("Time [s]");
 
 subplot(2,1,2);
@@ -43,8 +45,9 @@ acc_filtered = filter_data(acc, low_pass);
 figure(2)
 % Plot in time domain
 subplot(2,1,1);
-plot(t,acc_filtered')
+scatter(t,acc_filtered', 5, '.')
 xlabel("Time [s]")
+
 
 % Plot in frequency domain (fft)
 subplot(2,1,2);
@@ -58,13 +61,13 @@ plot([-f(maxIndex:-1:2) f(1:maxIndex)], [fty(maxIndex:-1:2) fty(1:maxIndex)]); g
 xlabel("Frequency [Hz]")
 sgtitle("Filtered Signal in Time Domain and Frequency Domain");
 saveas(figure(2), "Filtered_Signal_tdomain_fdomain", "png");
-
+ 
 %save('hw1_part2.mat','low_pass');
 
 %% Q6 Sampling the signal
 % Sample the signal at 10 * freq_max
 
-[val index] = max(fty);
+[val, index] = max(fty);
 freq_max = f(index);
 Fs = 10*freq_max;
 
@@ -72,10 +75,8 @@ Fs = 10*freq_max;
 
 %% Q7 (Use reconstruct_signal() function)
 % TODO: reconstrut signal with different interpolation method
-% reconstruct_freq = 200;
-%[tr_zero, acc_r_zerohold] = reconstruct_signal(reconstruct_freq, ts, acc_sampled,'zero_order_interp');
+reconstruct_freq = 200;
+[tr_zero, acc_r_zerohold] = reconstruct_signal(reconstruct_freq, ts, acc_sampled,'zero_order_interp');
 %[tr_first, acc_r_firsthold] = reconstruct_signal(reconstruct_freq, ts, acc_sampled,'first_order_interp');
 %[tr_ws, acc_r_ws] = reconstruct_signal(reconstruct_freq, ts, acc_sampled,'ws_interp');
-
-
 
