@@ -114,7 +114,7 @@ w = 2*pi * (0:(N-1)) / N;
 w2 = fftshift(w);
 w3 = unwrap(w2 - 2*pi);
 
-%Assume Fs = 100 Hz %%%%%%%%%%%%%%%%%%%%%%% QUESTION %%%%%%%%%%%%%%%%%%%%
+%Assume Fs = 100 Hz? and is graph normal(large value at 0)? %%%%%%%%%%%%%%%%%%%%%%% QUESTION %%%%%%%%%%%%%%%%%%%%
 Fs = 100; %Hz
 X_n = fft(x_n,N);
 abs_X2 = abs(X_n);
