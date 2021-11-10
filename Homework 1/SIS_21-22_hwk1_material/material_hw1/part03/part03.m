@@ -147,7 +147,8 @@ ylabel('Heater Data')
 saveas(figure(6), "Q17_HeaterData", "png");
 
 
-x_n_heat = tf( 0.09516, [1, -0.9048]);
+x_n_heat = tf(0.09516, [1, -0.9048]);
+H1_sym = simplify(0.09516/(z_sym - 0.9048),'Steps',2);
 
 figure(7)
-lsim(x_n_heat, heater_u, heater_n)
+lsim(x_n_heat, heater_u, heater_n) %%%%%%%%%%%%%%%%%%%%%%% QUESTION %%%%%%%%%%%%%%%%%%%%
