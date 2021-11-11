@@ -2,16 +2,16 @@
 % Kagan Erunsal, kagan.erunsal@epfl.ch, Oct 2021
 
 %% Q11 (use ilaplace())
-syms C_sym R_sym s_sym  
+syms C_sym R_sym s_sym
 sympref('HeavisideAtOrigin',1);
 assume(s_sym >0);
 H2 = 1/(s_sym*C_sym*R_sym+ 1);
-h2 = ilaplace(H2, s_sym); 
+h2 = ilaplace(H2, s_sym);
 simplify(h2);
 
 %% Q12
 R = 1;
-C = 1; 
+C = 1;
 H1 = R/(s_sym*C*R + 1);
 
 % a (use tf() and step())
@@ -23,41 +23,25 @@ title("Step Response Using tf() and step()");
 
 
 % b (use int())
-<<<<<<< HEAD
-assume(s_sym, 'clear')
-assume(t_sym > 0);
-% Compute step input for convolution symbolically (Use heaviside())
-u_sym2 = heaviside(t_sym);
-h1 = (1/C)*(exp(-t_sym/(C*R))*u_sym);
-H1_int = int(u_sym2*h1, t_sym, -inf, inf);
-%simplify(h1);
-%simplify(H1_int);
-=======
-syms t_sym 
+syms t_sym
 u_sym = heaviside(t_sym);
 sympref('HeavisideAtOrigin',1);
 
 h1 = exp(-t_sym/C*R)*u_sym/C;
 
-H1_int = int(h1, t_sym); 
->>>>>>> c52866f8d303d58182a63827ac1a0788719bca10
+H1_int = int(h1, t_sym);
 
 subplot(2,1,2)
-<<<<<<< HEAD
-fplot(H1_int)
-
-=======
 fplot(t_sym,H1_int, [0, 10])
 title("Step Response Using int()");
 xlabel("Time (seconds)");
 ylabel("Amplitude");
->>>>>>> 903396a4142223dfc364faada0768dc706dc4320
 saveas(figure(1), "Q12_Step_response", "png");
 
 %% Q13
 % System 1
 R = 1;
-C = 5; 
+C = 5;
 H1_tf2 = tf(R, [C*R, 1]);
 
 figure(2)
@@ -77,9 +61,9 @@ saveas(figure(2), "Q13", "png");
 
 
 %% Q14 (use c2d())
-ts = 0.1; % sampling time 
-R = 1; 
-C = 1; 
+ts = 0.1; % sampling time
+R = 1;
+C = 1;
 H1_tf4 = tf(R, [C*R, 1]);
 
 H1_tf4_z = c2d(H1_tf4, ts, 'zoh');
@@ -91,12 +75,7 @@ title('Discrete Step Reponse')
 subplot(2,1,2)
 step(H1_tf4)
 title('Continuous Step Reponse')
-<<<<<<< HEAD
-set(gca,'fontname','times')
-
-=======
 saveas(figure(3), "Q14_Step", "png");
->>>>>>> 903396a4142223dfc364faada0768dc706dc4320
 
 
 %% Q15 (use iztrans())
@@ -112,10 +91,10 @@ H1_sym = simplify(0.09516/(z_sym - 0.9048),'Steps',2);
 step_fct = heaviside(t_sym);
 S = ztrans(step_fct, t_sym, z_sym);
 
-x_z_sym = S*H1_sym ; 
+x_z_sym = S*H1_sym ;
 
 % Back to time domain
-x_sym = iztrans(x_z_sym, z_sym, t_sym); 
+x_sym = iztrans(x_z_sym, z_sym, t_sym);
 
 simplify(x_sym);
 
@@ -128,10 +107,10 @@ saveas(figure(4), "Q15_Step_Discrete", "png");
 
 
 %% Q16 (use fft())
-n = 0:1:100; 
+n = 0:1:100;
 
-x_n = 10.5042-9.5042*(0.9048).^n ; 
- 
+x_n = 10.5042-9.5042*(0.9048).^n ;
+
 
 figure(5)
 
@@ -148,12 +127,8 @@ X_n = fft(x_n,N);
 abs_X2 = abs(X_n);
 fs = Fs*(-N/2:1:N/2-1)/N;
 
-%Plot FFT 
-<<<<<<< HEAD
-stem(fs,fftshift(abs_X2),'.')
-=======
+%Plot FFT
 stem(fs,fftshift(abs_X2), '.')
->>>>>>> 903396a4142223dfc364faada0768dc706dc4320
 grid on
 hold on
 xlabel('Frequency [Hz]')
@@ -178,13 +153,9 @@ ylabel('Heater Data')
 saveas(figure(6), "Q17_HeaterData", "png");
 
 R = 1;
-C = 1; 
+C = 1;
 x_n_heat = tf(R, [C*R, 1]);
 
 figure(7)
-<<<<<<< HEAD
-lsim(x_n_heat, heater_u, heater_n) %%%%%%%%%%%%%%%%%%%%%%% QUESTION %%%%%%%%%%%%%%%%%%%%
-=======
-lsim(x_n_heat, heater_u, heater_n) 
+lsim(x_n_heat, heater_u, heater_n)
 saveas(figure(7), "Q17_HeaterData_lsim", "png");
->>>>>>> 903396a4142223dfc364faada0768dc706dc4320
