@@ -20,6 +20,7 @@ subplot(2,1,1)
 H1_tf = tf(R, [C*R, 1]);
 step(H1_tf)
 
+
 % b (use int())
 syms t_sym u_sym
 assume(s_sym, 'clear');
@@ -34,6 +35,7 @@ H1_int = int(f, t_sym, -inf, inf); %%%%%%%%%%%%%%%% QUESTION %%%%%%%%%%%%%%
 
 subplot(2,1,2)
 fplot(H1_int)
+
 saveas(figure(1), "Q12_Step_response", "png");
 %assume(t_sym, 'clear')
 %% Q13
@@ -56,6 +58,7 @@ step(H1_tf3)
 title('Step Response System 2');
 
 
+
 %% Q14 (use c2d())
 ts = 0.1; % sampling time 
 R = 1; 
@@ -71,7 +74,7 @@ title('Discrete Step Reponse')
 subplot(2,1,2)
 step(H1_tf4)
 title('Continuous Step Reponse')
-
+set(gca,'fontname','times')
 
 
 
@@ -121,14 +124,12 @@ abs_X2 = abs(X_n);
 fs = Fs*(-N/2:1:N/2-1)/N;
 
 %Plot FFT 
-stem(fs,fftshift(abs_X2))
+stem(fs,fftshift(abs_X2),'.')
 grid on
 hold on
 xlabel('Frequency [Hz]')
 ylabel('Amplitude')
-legend('FFT');
 title('FFT of Step Response')
-
 
 saveas(figure(5), "Q16_FFT", "png");
 
@@ -144,6 +145,7 @@ xlim([0 11]);
 title('Heater Input')
 xlabel('Time-stamps')
 ylabel('Heater Data')
+
 saveas(figure(6), "Q17_HeaterData", "png");
 
 
