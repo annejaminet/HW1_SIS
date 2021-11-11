@@ -21,7 +21,9 @@ end
  stem(n,s, '.')
  title('Signal s');
  xlabel('n');
- ylabel('s[n]')
+ ylabel('s[n]');
+ ylim([-1.5,1.5]);
+ saveas(figure(1), "Q1_SignalS", "png");
 
  %Signal h 
  h = zeros(length(n),1);
@@ -37,7 +39,9 @@ end
  stem(n,h, '.')
  title('Signal h');
  xlabel('n');
- ylabel('h[n]')
+ ylabel('h[n]');
+ ylim([-1.5,1.5]);
+ saveas(figure(2), "Q1_SignalH", "png");
  
 %% b)
 first_signal = h;
@@ -47,4 +51,6 @@ result = take_conv(first_signal,second_signal);
 x = -length(n)+1:length(n)-1;
 figure(3)
 stem(x, result, '.')
-title('Discrete Convolution (h*s)')
+title('Discrete Convolution (h*s)');
+ylim([-1.5,1.5]);
+saveas(figure(3), "Q1_conv", "png");
