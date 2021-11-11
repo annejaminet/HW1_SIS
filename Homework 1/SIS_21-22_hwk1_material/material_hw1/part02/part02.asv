@@ -76,12 +76,8 @@ Fs = 10*freq_max;
 %% Q7 (Use reconstruct_signal() function)
 % TODO: reconstrut signal with different interpolation method
 reconstruct_freq = 200;
-figure(3)
 [tr_zero, acc_r_zerohold] = reconstruct_signal(reconstruct_freq, ts, acc_sampled,'zero_order_interp');
-saveas(figure(3), "ZOH", "png");
-figure(4)
+
 [tr_first, acc_r_firsthold] = reconstruct_signal(reconstruct_freq, ts, acc_sampled,'first_order_interp');
-saveas(figure(4), "FOH", "png");
-figure(5)
 [tr_ws, acc_r_ws] = reconstruct_signal(reconstruct_freq, ts, acc_sampled,'ws_interp');
-saveas(figure(5), "WS", "png");
+

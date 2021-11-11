@@ -21,7 +21,6 @@ H1_tf = tf(R, [C*R, 1]);
 step(H1_tf)
 title("Step Response Using tf() and step()");
 
-
 % b (use int())
 syms t_sym 
 u_sym = heaviside(t_sym);
@@ -32,15 +31,10 @@ h1 = exp(-t_sym/C*R)*u_sym/C;
 H1_int = int(h1, t_sym); 
 
 subplot(2,1,2)
-<<<<<<< HEAD
-fplot(H1_int)
-
-=======
 fplot(t_sym,H1_int, [0, 10])
 title("Step Response Using int()");
-xlabel("Time (seconds)");
-ylabel("Amplitude");
->>>>>>> 903396a4142223dfc364faada0768dc706dc4320
+xlabel("Time");
+ylabe
 saveas(figure(1), "Q12_Step_response", "png");
 
 %% Q13
@@ -61,8 +55,6 @@ H1_tf3 = tf(R, [C*R, 1]);
 subplot(2,1,2)
 step(H1_tf3)
 title('Step Response System 2');
-saveas(figure(2), "Q13", "png");
-
 
 
 %% Q14 (use c2d())
@@ -80,16 +72,10 @@ title('Discrete Step Reponse')
 subplot(2,1,2)
 step(H1_tf4)
 title('Continuous Step Reponse')
-<<<<<<< HEAD
-set(gca,'fontname','times')
-
-=======
-saveas(figure(3), "Q14_Step", "png");
->>>>>>> 903396a4142223dfc364faada0768dc706dc4320
 
 
 %% Q15 (use iztrans())
-syms z_sym t_sym
+syms z_sym
 
 assume(z_sym > 0);
 assume(t_sym > 0);
@@ -98,7 +84,6 @@ assume(t_sym > 0);
 H1_sym = simplify(0.09516/(z_sym - 0.9048),'Steps',2);
 
 % Z-Transform of step function (frequency domain)
-step_fct = heaviside(t_sym);
 S = ztrans(step_fct, t_sym, z_sym);
 
 x_z_sym = S*H1_sym ; 
@@ -110,11 +95,6 @@ simplify(x_sym);
 
 figure(4)
 fplot(x_sym, [0, 60])
-title("Step Response of Discrete System");
-xlabel("Time (seconds)");
-ylabel("Amplitude");
-saveas(figure(4), "Q15_Step_Discrete", "png");
-
 
 %% Q16 (use fft())
 n = 0:1:100; 
@@ -138,16 +118,14 @@ abs_X2 = abs(X_n);
 fs = Fs*(-N/2:1:N/2-1)/N;
 
 %Plot FFT 
-<<<<<<< HEAD
-stem(fs,fftshift(abs_X2),'.')
-=======
-stem(fs,fftshift(abs_X2), '.')
->>>>>>> 903396a4142223dfc364faada0768dc706dc4320
+stem(fs,fftshift(abs_X2))
 grid on
 hold on
 xlabel('Frequency [Hz]')
 ylabel('Amplitude')
+legend('FFT');
 title('FFT of Step Response')
+
 
 saveas(figure(5), "Q16_FFT", "png");
 
@@ -157,23 +135,17 @@ saveas(figure(5), "Q16_FFT", "png");
 load('heaterData.mat')
 
 figure(6)
-stem(heater_n, heater_u, '.')
+stem(heater_n, heater_u)
 ylim([0 1.2]);
 xlim([0 11]);
 title('Heater Input')
 xlabel('Time-stamps')
 ylabel('Heater Data')
-
 saveas(figure(6), "Q17_HeaterData", "png");
 
 R = 1;
 C = 1; 
-x_n_heat = tf(R, [C*R, 1]);
+x_n_heat= tf(R, [C*R, 1]);
 
 figure(7)
-<<<<<<< HEAD
-lsim(x_n_heat, heater_u, heater_n) %%%%%%%%%%%%%%%%%%%%%%% QUESTION %%%%%%%%%%%%%%%%%%%%
-=======
 lsim(x_n_heat, heater_u, heater_n) 
-saveas(figure(7), "Q17_HeaterData_lsim", "png");
->>>>>>> 903396a4142223dfc364faada0768dc706dc4320
