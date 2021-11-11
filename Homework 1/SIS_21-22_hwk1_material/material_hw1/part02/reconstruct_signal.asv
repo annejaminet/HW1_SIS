@@ -10,20 +10,18 @@ tr=0:1/reconstruct_freq:max(ts);
 switch interp_method
     case 'zero_order_interp' 
         yr = ZeroOrderHoldReconstruction(tr,ts,ys);
-        title = "Zero-Order Hold Reconstruction in Time and Frequency Domain";
+        title = "Zero-";
     case 'first_order_interp'
         yr = FirstOrderHoldReconstruction(tr,ts,ys);
-        title = "First-Order Hold Reconstruction in Time and Frequency Domain";
     case 'ws_interp'
         yr = wsSignalReconstruction(tr,ts,ys);
-        title = "WS Hold Reconstruction in Time and Frequency Domain";
     otherwise
         yr = 0;
         warning('Unexpected interpolation type')
 end
 
 % TODO: plot the fft of reconstructed signal 
-
+figure(3)
 dataFrequency = 5000;
 subplot(2,1,1);
 plot(tr,yr)
@@ -41,7 +39,7 @@ maxIndex=find(f>Fmax,1);
 plot([-f(maxIndex:-1:2) f(1:maxIndex)], [fty(maxIndex:-1:2) fty(1:maxIndex)]); grid on;
 xlabel("Frequency [Hz]")
 sgtitle(title);
-
+saveas(figure(3), "Filtered_Signal_fdomain", "png");
 
 
 
