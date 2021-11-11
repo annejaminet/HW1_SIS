@@ -22,10 +22,12 @@ step(H1_tf)
 % b (use int())
 assume(s_sym, 'clear')
 assume(t_sym > 0);
+% Compute step input for convolution symbolically (Use heaviside())
+u_sym2 = heaviside(t_sym);
 h1 = (1/C)*(exp(-t_sym/(C*R))*u_sym);
-H1_int = int(h1, t_sym, -inf, inf);
-simplify(h1);
-simplify(H1_int);
+H1_int = int(u_sym2*h1, t_sym, -inf, inf);
+%simplify(h1);
+%simplify(H1_int);
 
 subplot(2,1,2)
 fplot(H1_int)
