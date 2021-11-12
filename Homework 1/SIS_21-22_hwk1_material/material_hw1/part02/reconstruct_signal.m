@@ -10,10 +10,10 @@ tr=0:1/reconstruct_freq:max(ts);
 switch interp_method
     case 'zero_order_interp' 
         yr = ZeroOrderHoldReconstruction(tr,ts,ys);
-        title = "Zero-Order Hold Reconstruction in Time and Frequency Domain";
+        title = "ZOH Reconstruction in Time and Frequency Domain";
     case 'first_order_interp'
         yr = FirstOrderHoldReconstruction(tr,ts,ys);
-        title = "First-Order Hold Reconstruction in Time and Frequency Domain";
+        title = "FOH Reconstruction in Time and Frequency Domain";
     case 'ws_interp'
         yr = wsSignalReconstruction(tr,ts,ys);
         title = "WS Hold Reconstruction in Time and Frequency Domain";
