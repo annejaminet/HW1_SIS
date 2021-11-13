@@ -16,7 +16,7 @@ switch interp_method
         title = "FOH Reconstruction in Time and Frequency Domain";
     case 'ws_interp'
         yr = wsSignalReconstruction(tr,ts,ys);
-        title = "WS Hold Reconstruction in Time and Frequency Domain";
+        title = "WS Reconstruction in Time and Frequency Domain";
     otherwise
         yr = 0;
         warning('Unexpected interpolation type')
