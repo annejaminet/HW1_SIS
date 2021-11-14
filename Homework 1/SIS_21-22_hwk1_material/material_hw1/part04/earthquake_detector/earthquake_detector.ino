@@ -5,7 +5,7 @@
 #include <Tsl2561.h> //from Joba
 #include <Sodaq_SHT2x.h>
 #include "mma8652.h" //from panStamp
-#include <math.h> 
+#include <math.h>
 
 // Initialize OLED screen
 SSD1306AsciiWire oled;
@@ -39,7 +39,7 @@ float yaccl = 0;
 float zaccl= 0;
 float x = 0;
 float y = 0;
-float z = 0; 
+float z = 0;
 String data;
 
 
@@ -52,13 +52,13 @@ void setup()
   Wire.setClock(400000L);
 
   Serial.begin(9600);
-  
+
 
   //// QUESTION 21 ////
-  
-  // Initialize serial line for communication with base station 
+
+  // Initialize serial line for communication with base station
   Serial3.begin(9600);
-  
+
    // Flush serial line
    Serial3.flush();
     delay(1500);
@@ -80,7 +80,7 @@ void setup()
    oled.setFont(Adafruit5x7);
    oled.displayRemap(1);
    oled.setContrast(0);
-  
+
    oled.clear();
 
   // Init accelerometer
@@ -100,50 +100,37 @@ void loop()
   //// QUESTION 20 ////
   oled.home();
   oled.set1X();
-  
+
 
 
   //Read accelerometer data from sensor
   accel.readXYZ();
-  
+
   //Compute total acceleration vector
   xaccl=float(accel.axis.x) ;
   yaccl= float(accel.axis.y);
   zaccl = float(accel.axis.z);
   totvect = sqrt(pow((xaccl-xavg), 2)+pow((yaccl - yavg),2) + pow((zaccl - zavg),2));
-  
+
   //Average with previous step
   tot_av = (totvect + totvect_previous)/2;
-  
+
   //Stock value as previous vector for next loop
   totvect_previous=totvect;
 
   char str[6];
   dtostrf(tot_av, 5, 2, str );
-  
+
   //// QUESTION 21 ////
   Serial3.println(str);
   Serial.println(str);
-  
+
   //// QUESTION 20 ////
   oled.print(str);
   oled.print("\n");
 
-  
 
-  //Detection of earthquake (assuming earthquake occurs when values are higher than 100)
-  /*if(tot_av>100){
-    if (flag == 0){
-      steps++;
-      flag =1;
-    }
-    flag++;
-  }
-  else if(tot_av<=100){
-      flag = 0;
-  }*/
-      
-
+    
   delay(100); // keep the loop at 10Hz
 }
 
@@ -163,16 +150,16 @@ void calibrate()
     z= z + float(accel.axis.z);
   }
 
-  //Calculate and save the averages for each axis 
+  //Calculate and save the averages for each axis
   xavg = x/100;
   delay(100);
   yavg = y/100;
   delay(100);
   zavg = z/100;
 
-  //Insert a delay 
+  //Insert a delay
   delay(100);
-  
+
   //Print the averages on the serial monitor
   Serial.print(String(xavg)+";");
   Serial.print(String(yavg)+";");

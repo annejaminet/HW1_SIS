@@ -1,11 +1,11 @@
 
 
 void setup() {
-   
+
   //Initialize serial line to communicate with the computer
   Serial.begin(9600);
   while(!Serial){
- 
+
   }
 
   //Initialize serial line to communicate with the Xbee
@@ -30,12 +30,12 @@ void setup() {
 
 }
 
-void loop() { 
+void loop() {
 
   // Read from Xbee serial line, write to computer Serial line
   while(Serial3.available() > 0)
   {
-   
+
    Serial.write(Serial3.read());
   }
 
